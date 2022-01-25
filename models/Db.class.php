@@ -8,7 +8,7 @@ class Db
     {
         try {
             $url = parse_url(getenv("DATABASE_URL"));
-            $uri = "pgsql:host=".$db["host"].";port=".$db["port"].";dbname=".ltrim($db["path"], "/");
+            $uri = "pgsql:host=".$url["host"].";port=".$url["port"].";dbname=".ltrim($url["path"], "/");
             var_dump($uri);
             $this->_db = new PDO($uri, $db["user"], $db["pass"]);
             $this->_db->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
