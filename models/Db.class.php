@@ -8,10 +8,10 @@ class Db
     {
         try {
             $url = parse_url(getenv("DATABASE_URL"));
-            var_dump($url);
-            $this->_db = new PDO("pgsql:host=".$db["host"].";port=".$db["port"].";dbname=".ltrim($db["path"], "/"), $db["user"], $db["pass"]);
+            $uri = "pgsql:host=".$db["host"].";port=".$db["port"].";dbname=".ltrim($db["path"], "/");
+            var_dump($uri);
+            $this->_db = new PDO($uri, $db["user"], $db["pass"]);
             $this->_db->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-            //throw new PDOException(parse_url(getenv("DATABASE_URL")));
         } 
 		catch (PDOException $e) {
 		    die('Erreur de connexion à la base de données : '.$e->getMessage());
